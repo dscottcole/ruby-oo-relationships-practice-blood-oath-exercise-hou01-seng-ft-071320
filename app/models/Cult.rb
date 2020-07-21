@@ -40,4 +40,44 @@ class Cult
         d = c.map {|oaths| oaths.cult}.uniq
     end
 
+    def average_age
+        a = BloodOath.all.map {|oaths| oaths.follower.age}
+        a.sum.to_f/a.length
+    end
+
+    def my_followers_mottos
+       a = BloodOath.all.select {|oaths| oaths.cult == self}
+       a.map {|oaths| p oaths.follower.life_motto}
+    end
+
+    def self.least_popular 
+        a = BloodOath.all.map {|oaths| oaths.cult}
+        b = {}
+        i = 0 
+        while i < a.length do
+            if b.include?(a[i]) == false
+                b[a[i]] = 1
+            else
+                b[a[i]] +=1
+            end
+        i += 1
+        end
+        b.find_all {|k,v| v == b.values.min}.to_h.keys
+    end
+
+    def self.most_common_location
+        a = BloodOath.all.map {|oaths| oaths.cult.location}
+        b = {}
+        i = 0 
+        while i < a.length do
+            if b.include?(a[i]) == false
+                b[a[i]] = 1
+            else
+                b[a[i]] +=1
+            end
+        i += 1
+        end
+        b.find_all {|k,v| v == b.values.max}.to_h.keys
+    end    
+
 end
