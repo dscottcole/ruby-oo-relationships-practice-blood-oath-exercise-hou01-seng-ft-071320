@@ -15,5 +15,11 @@ class BloodOath
         @@all    
     end
 
+    def self.first_oath
+        a = self.all.map {|oaths| oaths.initiation_date}
+        b = a.uniq.last
+        self.all.find {|oaths| oaths.initiation_date == b}
+    end
+
 
 end

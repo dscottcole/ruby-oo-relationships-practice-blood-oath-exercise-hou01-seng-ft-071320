@@ -26,4 +26,29 @@ class Follower
         BloodOath.all.select {|oaths| oaths.follower.age >= age}    
     end
 
+
+    def my_cult_slogans
+        binding.pry
+        a = BloodOath.all.select {|oaths| oaths.follower == self}
+        a.map {|oaths| p oaths.cult.slogan}
+    end
+
+    def self.most_active
+        a = BloodOath.all.map {|oaths| oaths.follower.name}
+        b = {}
+        i = 0 
+        while i < a.length do
+            if b.include?(a[i]) == false
+                b[a[i]] = 1
+            else
+                b[a[i]] +=1
+            end
+        i += 1
+        b.find_all {|k,v| v == b.values.max}.to_h.keys
+        end
+    end
+
+    # def self.top_ten
+    # end
+
 end

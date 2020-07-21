@@ -26,6 +26,8 @@ wind.recruit_follower(timmy)
 ghost.recruit_follower(james)
 fire.recruit_follower(jimmy)
 jimmy.join_cult(earth)
+james.join_cult(water, "2001/01/01")
+
 
 
 
